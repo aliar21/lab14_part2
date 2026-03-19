@@ -55,6 +55,14 @@ PORT = 9095
 
 
 async def handle_echo(reader, writer):
+    data = await reader.read(1024)
+    message = data.decode()
+    addr = writer.get_extra_info('peername')
+    print(f"Подключение от {addr}, сообщение: '{message}'")
+    writer.write(data)
+    await writer.drain()
+    writer.close()
+    await writer.wait_closed()
     """Обработчик подключения клиента.
 
     Эта корутина вызывается автоматически при каждом новом подключении.
@@ -63,7 +71,7 @@ async def handle_echo(reader, writer):
 
     # TODO 6: Реализуйте эхо-сервер. Выполните следующие шаги по порядку:
     #
-    # 1. Прочитайте данные от клиента:
+    
     #        data = await reader.read(1024)
     #
     # 2. Декодируйте байты в строку:

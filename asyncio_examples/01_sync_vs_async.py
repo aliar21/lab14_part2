@@ -56,12 +56,12 @@ async def main_async():
     # Верните список результатов.
     #
     # Подсказка:
-    #   results = await asyncio.gather(
-    #       fetch_data_async("API сервер", 2),
-    #       fetch_data_async("База данных", 3),
-    #       fetch_data_async("Файловое хранилище", 1),
-    #   )
-    #   return results
+    results = await asyncio.gather(
+        fetch_data_async("API сервер", 2),
+        fetch_data_async("База данных", 3),
+        fetch_data_async("Файловое хранилище", 1),
+        )
+    return results
 
     # --- Ваш код здесь ---
     pass
